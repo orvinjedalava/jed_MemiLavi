@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 public class Query
 {
-  public List<Book> Books => ReadBooks();
+  // public List<Book> Books => ReadBooks();
 
   public List<Magazine> Magazines => ReadMagazines();
 
@@ -11,11 +11,20 @@ public class Query
 
   public List<IThings> Things => GetThings();
 
-  private List<Book> ReadBooks()
+  // private List<Book> ReadBooks()
+  // {
+  //   string fileName = "Database/books.json";
+  //   string jsonString = File.ReadAllText(fileName);
+  //   return JsonSerializer.Deserialize<List<Book>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, Converters = { new JsonStringEnumConverter() } })!;
+  // }
+
+  public List<Book> Books(string nameContains = "")
   {
     string fileName = "Database/books.json";
     string jsonString = File.ReadAllText(fileName);
-    return JsonSerializer.Deserialize<List<Book>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, Converters = { new JsonStringEnumConverter() } })!;
+    var books = JsonSerializer.Deserialize<List<Book>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, Converters = { new JsonStringEnumConverter() } })!;
+
+    return books.Where(b => b.Name.IndexOf(nameContains) >= 0).ToList();
   }
 
   private List<Magazine> ReadMagazines()
@@ -27,7 +36,7 @@ public class Query
 
   private List<IReadingMaterials> GetReadingMaterials()
   {
-    var materials = ReadBooks().Cast<IReadingMaterials>().ToList();
+    var materials = Books().Cast<IReadingMaterials>().ToList();
     materials.AddRange(ReadMagazines().Cast<IReadingMaterials>().ToList());
 
     return materials;
@@ -35,7 +44,7 @@ public class Query
 
   private List<IThings> GetThings()
   {
-    var things = ReadBooks().Cast<IThings>().ToList();
+    var things = Books().Cast<IThings>().ToList();
     things.AddRange(ReadMagazines().Cast<IThings>().ToList());
 
     return things;
