@@ -5,4 +5,5 @@ public class Book
   public int Pages { get; set; }
   public double Price { get; set; }
   public DateTime PublishDate { get; set; }
+  public Author? Author { get; set; }
 }
