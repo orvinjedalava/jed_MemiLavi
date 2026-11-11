@@ -1,0 +1,21 @@
+## .NET build artifacts
+bin/
+obj/
+
+## Visual Studio / VS Code
+.vs/
+*.user
+*.suo
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## Rider
+.idea/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
