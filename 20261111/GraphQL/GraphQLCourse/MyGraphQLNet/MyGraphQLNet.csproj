@@ -10,4 +10,10 @@
     <PackageReference Include="HotChocolate.AspNetCore" Version="16.7.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Database\books.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
+
 </Project>
