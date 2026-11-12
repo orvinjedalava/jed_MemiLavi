@@ -4,9 +4,12 @@ builder.Services
   .AddQueryType<Query>()
   .AddType<BookType>();
 
+builder.Services.AddAuthentication();
+
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseAuthentication();
 app.MapGet("/", () => "Hello World!");
 app.MapGraphQL();
 
