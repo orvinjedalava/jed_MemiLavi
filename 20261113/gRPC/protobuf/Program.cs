@@ -9,7 +9,9 @@ emp.LastName = "Al";
 emp.IsRetired = false;
 var birthdate = new DateTime(1976, 7, 9);
 birthdate = DateTime.SpecifyKind(birthdate, DateTimeKind.Utc);
+// BirthDate and Age are inside oneof ( check .proto file )
 emp.BirthDate = Timestamp.FromDateTime(birthdate);
+emp.Age = 28;
 emp.MaritalStatus = Employee.Types.MaritalStatus.Married;
 emp.PreviousEmployers.Add("Microsoft");
 emp.PreviousEmployers.Add("HP");
