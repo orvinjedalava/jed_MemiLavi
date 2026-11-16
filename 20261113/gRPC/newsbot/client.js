@@ -23,11 +23,11 @@ const clientStub = new GRoomService(
 );
 
 // Creating the call to the service - not executing yet!
-var call = clientStub.sendNewsFlash(function(error, newsStatus) {
+var call = clientStub.sendNewsFlash(function(error, newsStreamStatus) {
   if (error) {
     console.error(error);
   }
-  console.log('Stream success: ', newsStatus.success);
+  console.log('Stream success: ', newsStreamStatus.success);
 });
 
 var itemsCount = 0;
